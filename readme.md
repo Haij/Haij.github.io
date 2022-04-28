@@ -17,13 +17,13 @@ function unique(arr) {
 实现数组reverse
 
 ```js
-// 改变原数组
+// 改变原数组, 此实现使用了指针对撞的方法
 Array.prototype.myReverse = function () {
-    let len = this.length;
-    for (let i = 0; i < len; i++) {
-        var temp = this[i];
-        this[i] = this[len - 1 - i];
-        this[len - 1 - i] = temp;
+    let start = 0, end = this.length-1;
+    while(start < end){
+        [this[start], this[end]] = [this[end], this[start]];
+        start++;
+        end--;
     }
     return this;
 }
@@ -572,9 +572,9 @@ mySearch = function(source: string, subString: string) {
 
 ### ES6
 
-Set对象的作用
+![es6-tutorial](es6-tutorial.jpg)
 
-![es6-tutorial.jpg)
+Set对象的作用
 
 ```js
 // 数组去重
@@ -677,7 +677,7 @@ option = {
 
 ### CSS
 
-通过 SVG 和 CSS，我们可以让一个对象或者元素沿着 SVG 路径做一些动效著作权归作者所有。
+通过 SVG 和 CSS，我们可以让一个对象或者元素沿着 SVG 路径做一些动效。
 
 ```html
 <svg width="300px" height="175px" version="1.1"> 
@@ -704,6 +704,20 @@ svg {
     from { offset-distance: 0%; } 
     to { offset-distance: 100%; } 
 }
+```
+
+#### clip-path
+
+clip-path CSS 属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部svg的路径，或者作为一个形状例如circle().。clip-path属性代替了现在已经弃用的剪切 clip属性。
+
+```css
+.diamond{
+	width: 200px;
+	height: 200px;
+	background-image: linear-gradient(#e66465, #9198e5);
+	clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%);
+}
+<div class="diamond"></div>
 ```
 
 
