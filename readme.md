@@ -5,18 +5,17 @@
 ### Account
 
 ```js
-// 辽宁省药品生产信息化监管系统
 A: 20201007   P: 071532 
 
 目前内网新建了代码仓库
 地址: http://192.168.40.249:3000/
-账号: zhaoliang
+账号: 姓名全拼
 初始密码: qq
 
 外网代码仓库
 地址：https://gitea.lescity.com.cn/user/login
-账号：ytqly@163.com
-密码：zl2lc+qq
+账号：email
+密码：常规规则+qq
 
 ```
 
