@@ -2,6 +2,29 @@
 
 ### accumulate over a long period
 
+### Account
+
+```js
+// 辽宁省药品生产信息化监管系统
+A: 20201007   P: 071532 
+
+目前内网新建了代码仓库
+地址: http://192.168.40.249:3000/
+账号: zhaoliang
+初始密码: qq
+
+外网代码仓库
+地址：https://gitea.lescity.com.cn/user/login
+账号：ytqly@163.com
+密码：zl2lc+qq
+
+```
+
+| 账号   | 密码      |
+| ------ | --------- |
+| 213510 | 213510sr  |
+| 223519 | 223519zcc |
+
 
 
 ES6方式数组去重
@@ -323,6 +346,8 @@ let cookie = {
 防抖
 
 ```js
+// 这里有个小笑话，看完你应该就秒懂了
+// 小明军训，教官发令：向左转！向右转！向后转！大家都照着做，唯有小明坐下来休息，教官火的一批，大声斥问他为啥不听指挥？小明说，我准备等你想好到底往哪个方向转，我再转。
 function debounce(handle, delay, immediate) {
     let timer = null;
     return function () {
@@ -720,6 +745,29 @@ clip-path CSS 属性可以创建一个只有元素的部分区域可以显示的
 <div class="diamond"></div>
 ```
 
+scss 循环
+
+```scss
+@for $i from 2 through 5 {
+  .column-layout-#{$i} {
+    grid-template-columns: repeat(#{$i}, 1fr);
+  }
+}
+==>
+.column-layout-2{
+    grid-template-columns: repeat(2, 1fr);
+}
+.column-layout-3{
+    grid-template-columns: repeat(3, 1fr);
+}
+.column-layout-4{
+    grid-template-columns: repeat(4, 1fr);
+}
+.column-layout-5{
+    grid-template-columns: repeat(5, 1fr);
+}
+```
+
 
 
 ### Element.classList
@@ -945,4 +993,26 @@ document.getElementById("img").addEventListener('click', function() {
 ```
 
 
+
+### Nginx
+
+相关概念：正向代理 - 代理客户端（比如在自己电脑上安装的VPN软件）；反向代理 - 代理服务器（比如Nginx）。
+
+```bash
+// 常用命令
+cd /usr/local/nginx/sbin/
+./nginx 启动
+./nginx -s stop 停止
+./nginx -s quit 安全退出
+./nginx -s reload 重新加载配置文件， 改了配置文件需要执行这个命令，用的比较多
+ps aux|grep nginx 查看nginx进程
+```
+
+
+
+### MISC
+
+1. 在文件夹的地址栏输入cmd，就可以打开一个本文件下的cmd命令窗口；
+
+- 加班可以调休吗？
 
