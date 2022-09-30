@@ -4,7 +4,7 @@
 
 
 
-ES6方式数组去重
+[ES6](es.md)方式数组去重
 
 ```js
 function unique(arr) {
@@ -990,5 +990,4 @@ ps aux|grep nginx 查看nginx进程
 ### MISC
 
 1. 在文件夹的地址栏输入cmd，就可以打开一个本文件下的cmd命令窗口；
-
 
