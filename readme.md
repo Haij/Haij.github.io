@@ -4,7 +4,7 @@
 
 
 
-[ES6](es.md)方式数组去重
+[ES6](./es.md)方式数组去重
 
 ```js
 function unique(arr) {
