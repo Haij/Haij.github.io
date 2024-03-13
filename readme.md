@@ -2,7 +2,13 @@
 
 ### accumulate over a long period
 
-
+货币格式化
+```
+row.salary.toLocaleString('zh-CN', {
+	style: 'currency',
+	currency: 'CNY'
+}).slice(0, -3)
+```
 
 [ES6](./mds/es.md)方式数组去重
 
