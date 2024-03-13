@@ -2,6 +2,18 @@
 
 ### accumulate over a long period
 
+element plus (vue3) 中 el-input 与 el-time-picker的focus聚焦事件
+```
+const timepikerRef = ref(null)
+timepikerRef.value.focus(true)
+ 或
+import {getCurrentInstance,nextTick } from "vue"
+const { proxy } = getCurrentInstance()
+// proxy.$refs.timepikerRef?.focus(true)
+proxy.$refsl`${row.name}Ref ].focus(true)
+// $frow.name}='timepiker
+```
+
 货币格式化
 ```
 row.salary.toLocaleString('zh-CN', {
