@@ -2,6 +2,22 @@
 
 ### accumulate over a long period
 
+手机号码校验
+```
+const rules = reactive({
+  applicantName: [
+    { required: true, message: '请输入您的姓名', trigger: 'blur' }
+  ],
+  applicantCompany: [
+    { required: true, message: '请输入您的企业全称', trigger: 'blur' }
+  ],
+  applicantPhone: [
+    { required: true, message: '手机号码不能为空', trigger: 'blur' },
+    { pattern: /^1[3|4|5|6|7|8|9][0-9]\d{8}(,1[3|4|5|6|7|8|9][0-9]\d{8})*$/, message: '手机号码格式不正确' },
+  ]
+})
+```
+
 element plus (vue3) 中 el-input 与 el-time-picker的focus聚焦事件
 ```
 const timepikerRef = ref(null)
