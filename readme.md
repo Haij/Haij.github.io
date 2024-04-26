@@ -936,6 +936,15 @@ npm install <packname> --save 简写（npm i packname -S） 自动把模块和�
 // 建议不要用 cnpm 安装 会有各种诡异的bug 可以通过如下操作解决 npm 下载速度慢的问题
 npm install --registry=https://registry.npm.taobao.org
 
+1.安装cnpm
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+2.设置/查看npm/cnpm源地址
+$ npm/cnpm config set/get registry
+
+3.查看npm所以信息
+$ npm config list
+
 ```
 
 
