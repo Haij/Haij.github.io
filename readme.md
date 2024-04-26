@@ -358,7 +358,8 @@ let cookie = {
 
 ```js
 // 这里有个小笑话，看完你应该就秒懂了
-// 小明军训，教官发令：向左转！向右转！向后转！大家都照着做，唯有小明坐下来休息，教官火的一批，大声斥问他为啥不听指挥？小明说，我准备等你想好到底往哪个方向转，我再转。
+// 小明军训，教官发令：向左转！向右转！向后转！大家都照着做，唯有小明坐下来休息，教官火的一批，
+// 大声斥问他为啥不听指挥？小明说，我准备等你想好到底往哪个方向转，我再转。
 function debounce(handle, delay, immediate) {
     let timer = null;
     return function () {
@@ -744,7 +745,9 @@ svg {
 
 #### clip-path
 
-clip-path CSS 属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。剪切区域是被引用内嵌的URL定义的路径或者外部svg的路径，或者作为一个形状例如circle().。clip-path属性代替了现在已经弃用的剪切 clip属性。
+clip-path CSS 属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。
+剪切区域是被引用内嵌的URL定义的路径或者外部svg的路径，或者作为一个形状例如circle().。
+clip-path属性代替了现在已经弃用的剪切 clip属性。
 
 ```css
 .diamond{
@@ -931,7 +934,8 @@ npm install <packname> --save-dev 简写（npm i packname -D） 自动把模块�
 // 项目（运行时、发布到生产环境时）依赖
 npm install <packname> --save 简写（npm i packname -S） 自动把模块和版本号添加到dependencies。
 
-至于我们啥时候用--save-dev、啥时候用--save 感觉是个规范问题，用反了项目一样可以跑起来（对于安装依赖正确时），但会给其他看你项目的人带来误解、可能会导致一些bug的出现，还有一些配置的错乱等
+至于我们啥时候用--save-dev、啥时候用--save 感觉是个规范问题，用反了项目一样可以跑起来（对于安装依赖正确时），
+但会给其他看你项目的人带来误解、可能会导致一些bug的出现，还有一些配置的错乱等
 
 // 建议不要用 cnpm 安装 会有各种诡异的bug 可以通过如下操作解决 npm 下载速度慢的问题
 npm install --registry=https://registry.npm.taobao.org
@@ -1011,7 +1015,10 @@ document.getElementById("div").addEventListener('click', function() {
 document.getElementById("img").addEventListener('click', function() {
     alert('请下载相应的html, css, js代码在本地运行看效果！');
     //全屏方法2
-    var RFSN = document.documentElement.requestFullScreen || document.documentElement.webkitRequestFullScreen || document.documentElement.mozRequestFullScreen || document.documentElement.msRequestFullScreen;
+    var RFSN = document.documentElement.requestFullScreen ||
+	document.documentElement.webkitRequestFullScreen ||
+	document.documentElement.mozRequestFullScreen ||
+	document.documentElement.msRequestFullScreen;
     if (RFSN) {
         RFSN.call(this);
     } else if (typeof window.ActiveXObject != "undefined") {
