@@ -2,6 +2,16 @@
 
 ### accumulate over a long period
 
+安装ESLint之后代码运行出现报错‘xxx‘ is missing in props validation
+解决办法：
+在.eslintrc.js中的"rules"下面添加：防止在react组件定义中缺少props验证
+```
+rules: {
+	'react/prop-types': 0,
+	...
+}
+```
+
 uniCopy
 ```
 export default function uniCopy({content,success,error}) {
