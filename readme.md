@@ -2,6 +2,24 @@
 
 ### accumulate over a long period
 
+取数组的最后一个元素
+```
+解构的方法
+const { length, 0: first, [length - 1]: last } = ['a', 'b', 'c', 'd']
+// length = 4
+// first = 'a'
+// last = 'd'
+
+Array.prototype.at()
+const last = ['a', 'b', 'c', 'd'].at(-1)
+// 'd'
+
+pop
+const last = ['a', 'b', 'c', 'd'].pop()
+// 'd'
+...
+```
+
 安装ESLint之后代码运行出现报错‘xxx‘ is missing in props validation
 
 解决办法：
