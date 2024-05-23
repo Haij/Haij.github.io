@@ -2,6 +2,13 @@
 
 ### accumulate over a long period
 
+安装指定的pnpm版本
+```
+1. node16.13以上
+2. corepack enable
+3. corepack prepare pnpm@版本号 --activate
+```
+
 object-fit 属性指定元素的内容应该如何去适应指定容器的高度与宽度。
 
 object-fit 一般用于 img 和 video 标签，一般可以对这些元素进行保留原始比例的剪切、缩放或者直接进行拉伸等。
