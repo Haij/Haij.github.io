@@ -2,6 +2,10 @@
 
 ### accumulate over a long period
 
+```
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+```
+
 安装指定的pnpm版本
 ```
 1. node16.13以上
