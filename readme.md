@@ -2,7 +2,7 @@
 
 ### accumulate over a long period
 
-```
+```html
 <div v-if="item?.skillTagVOS?.length" class="mouse-wheel">
 <div ref="scrollLeftRef" class="mt-2 overflow-x-hidden">
   <div class="flex gap-4">
@@ -12,7 +12,7 @@
   </div>
 </div>
 </div>
-```html
+```
 
 
 
