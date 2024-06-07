@@ -2,7 +2,8 @@
 
 ### accumulate over a long period
 
-```html
+鼠标滚轮横行滑动
+```vue
 <div v-if="item?.skillTagVOS?.length" class="mouse-wheel">
 <div ref="scrollLeftRef" class="mt-2 overflow-x-hidden">
   <div class="flex gap-4">
@@ -12,6 +13,44 @@
   </div>
 </div>
 </div>
+
+const scrollLeftRef = ref()
+const scrollInit = () => {
+  scrollLeftRef.value.addEventListener('mousewheel', (event) => {
+    // 获取滚动方向
+    const detail = event.wheelDelta || event.detail;
+    // 定义滚动方向，其实也可以在赋值的时候写
+    const moveForwardStep = 1
+    const moveBackStep = -1
+    // 定义滚动距离
+    let step = 0
+    // 判断滚动方向,这里的100可以改，代表滚动幅度，也就是说滚动幅度是自定义的
+    if (detail < 0) {
+      step = moveForwardStep * 20;
+    } else {
+      step = moveBackStep * 20;
+    }
+    // 对需要滚动的元素进行滚动操作
+    scrollLeftRef.value.scrollLeft += step
+  }, false)
+}
+
+.mouse-wheel {
+  position: relative;
+  cursor: default;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    content: "";
+    width: 50px;
+    height: 24px;
+    background: linear-gradient(to right, transparent, #fff);
+  }
+}
+
 ```
 
 
