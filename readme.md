@@ -24,7 +24,7 @@ const scrollInit = () => {
     const moveBackStep = -1
     // 定义滚动距离
     let step = 0
-    // 判断滚动方向,这里的100可以改，代表滚动幅度，也就是说滚动幅度是自定义的
+    // 判断滚动方向,这里的20可以改，代表滚动幅度，也就是说滚动幅度是自定义的
     if (detail < 0) {
       step = moveForwardStep * 20;
     } else {
