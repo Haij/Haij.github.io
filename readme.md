@@ -3,6 +3,20 @@
 ### accumulate over a long period
 
 ```
+<div v-if="item?.skillTagVOS?.length" class="mouse-wheel">
+<div ref="scrollLeftRef" class="mt-2 overflow-x-hidden">
+  <div class="flex gap-4">
+    <el-tag v-for="skill in item.skillTagVOS" :key="skill.id" type="info" effect="light" round>
+      {{ skill.tagName }}
+    </el-tag>
+  </div>
+</div>
+</div>
+```html
+
+
+
+```
 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
 ```
 
