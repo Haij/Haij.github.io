@@ -1,3 +1,755 @@
+# 待学习列表
+
+- vue3
+- [vite](https://vitejs.cn/)
+- [element-plus](https://element-plus.org/)
+- volar
+- [ts](https://tslang.cn)
+- [pinia](https://pinia.web3doc.top/)
+- [nprogress](https://www.npmjs.com/package/nprogress)
+
+# ES6空值判断
+```js
+
+//旧写法
+if(value != null && value != 'undefined' && value != '' && typeof(value) != 'undefined') {
+  // todo:...
+}
+
+//新写法
+if((value ?? '') != '') {
+  // todo:...
+}
+
+```
+
+
+::v-deep usage as a combinator has been deprecated. Use :deep(<inner-selector>) instead.
+
+# nprogress 的使用
+
+1.安装
+
+```bash
+npm install --save nprogress
+```
+
+2.导入 NProgress 包对应的 js 和 css
+
+```js
+import nProgress from "nprogress";
+import "nprogress/nprogress.css";
+```
+
+3.在 request 拦截器中，展示进度条 NProgress.start()
+
+```js
+axios.interceptors.request.use((config) => {
+  nProgress.start();
+  // ...
+  return config;
+});
+```
+
+4.在 response 拦截器中，隐藏进度条 NProgress.done()
+
+```js
+axios.interceptors.response.use((config) => {
+  nProgress.doen();
+  // ...
+  return config;
+});
+```
+
+或者也可以在路由守卫中设置
+
+router.js
+
+```
+import nProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+router.beforeEach((to, from, next) => {
+	nProgress.start();
+	// ...
+	next()
+})
+
+router.afterEach(() => {
+	nProgress.done();
+})
+```
+
+# NPM
+
+## 设置 npm registry 的方法
+
+持久使用
+
+```bash
+npm config set registry https://registry.npmmirror.com
+```
+
+配置后可通过下面方式来验证是否成功
+
+```bash
+npm config get registry
+```
+
+npm 自身就默认的镜像：http://registry.npmjs.org
+
+```bash
+npm config set registry http://registry.npmjs.org
+```
+
+如果用 npm 命令使用淘宝镜像，再次修改为 npm 的淘宝链接：
+
+```bash
+npm config set registry http://registry.npm.taobao.org
+```
+
+# GIT
+
+## 本地创建分支并推送到远程
+
+- 创建本地分析并切换到该分支
+
+```bash
+git checkout -b feature
+// 相当于
+git branch feature
+git checkout feature
+```
+
+即 git checkout -b 相当于把两条命令 git branch branchName、git checkout branchName 合成一条命令
+
+- 将 feature 分支推送到远程
+
+-u 参数与 --set-upstream 是一个意思，所以用-u 就好了，好记还好打。
+
+```bash
+git push -u origin feature
+```
+
+
+
+## 从某个分支创建新分支的方法
+
+第一步，切换到你指定的分支
+如我要从dev上拉一个分支，代码一模一样
+
+```bash
+git checkout dev
+```
+
+第二步，拉取dev的最新代码
+
+```bash
+git pull
+```
+
+第三步，在本地创建一个test分支，并切换到该分支
+
+```bash
+git checkout -b newBranchName
+```
+
+第四步，把分支推到远程仓库。此时执行 <code>**git branch -av**</code> 可以看到该分支在远程仓库也有了
+
+```bash
+git push origin newBranchName
+```
+
+第五步，将本地分支与远程分支关联
+
+```bash
+git branch --set-upstream-to=origin/newBranchName newBranchName
+```
+
+通过以上几个步骤，新分支就创建好了，可以使用新分支开发新功能了。
+
+```bash
+git push -u origin newBranchName
+==
+git push origin newBranchName
+git branch --set-upstream-to=origin/newBranchName newBranchName
+//todo: 我猜测的，还没验证
+```
+
+
+
+
+
+# Js 之 Fetch
+
+- Fetch API 提供了一个获取资源的接口（包括跨域请求），用于取代传统的 XMLHttpRequest 的，在 JavaScript 脚本里面发出 HTTP 请求。
+- fetch api 是基于 promise 的设计，返回的是 Promise 对象，它是为了取代传统 xhr 的不合理的写法而生的。
+- 接受第二个可选参数，一个可以控制不同配置的 `init` 对象。如下使用 [`fetch()`](https://links.jianshu.com/go?to=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FAPI%2FGlobalFetch%2Ffetch) POST JSON 数据
+
+```js
+fetch(
+  "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json"
+)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (myJson) {
+    console.log(myJson);
+  });
+
+// 等价于以下写法
+async function getJSON() {
+  let url =
+    "https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json";
+  try {
+    let response = await fetch(url);
+    return await response.json();
+  } catch (error) {
+    console.log("Request Faild", error);
+  }
+}
+getJSON().then(function (myJson) {
+  console.log(myJson);
+});
+```
+
+```js
+// 读取内容的方法
+// Response对象根据服务器返回的不同类型的数据，提供了不同的读取方法。
+response.text()：得到文本字符串。
+response.json()：得到 JSON 对象。(上例中所使用的)
+response.blob()：得到二进制 Blob 对象。
+response.formData()：得到 FormData 表单对象。
+response.arrayBuffer()：得到二进制 ArrayBuffer 对象（主要用于获取流媒体文件）。
+```
+
+```js
+// 第二个可选参数举例
+let url = "https://example.com/profile";
+let data = { username: "example" };
+fetch(url, {
+  method: "POST", // or 'PUT'
+  body: JSON.stringify(data), // data can be `string` or {object}!
+  headers: new Headers({
+    "Content-Type": "application/json",
+  }),
+})
+  .then((res) => res.json())
+  .catch((error) => console.error("Error:", error))
+  .then((response) => console.log("Success:", response));
+```
+
+# Js 之 File
+
+```js
+playOne(row) {
+    let self = this;
+    let name = row.url.slice(row.url.lastIndexOf("/") + 1);
+    if (row.url) {
+        fetch(row.url)
+            .then((res) => res.blob())
+            .then((blob) => {
+            // 此处new一个File
+            self.originFileTemp = new File([blob], name, { type: "video/mp4" });
+        });
+    }
+    this.videoUrl = row.url;
+}
+```
+
+# 箭头函数中 this 的指向问题
+
+箭头函数没有自己的 this，它的 this 是继承而来；默认指向在定义它时所处的对象，而不是执行时的对象，定义它的时候，可能环境是 window；箭头函数可以让我们在 setInterval，setTimeout 中方便地使用 this。
+
+```js
+const obj = {
+  aaa() {
+    setTimeout(function () {
+      console.log(this); //打印出window对象
+    }, 1000);
+
+    setTimeout(() => {
+      console.log(this); //打印出obj对象
+    }, 1000);
+  },
+};
+```
+
+# Date 对象
+
+```js
+Date.now() === new Date().valueOf();
+// 返回时间戳1658136358926
+```
+
+# WebSocket
+
+WebSocket 是 HTML5 开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。
+
+WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
+
+现在，很多网站为了实现推送技术，所用的技术都是 Ajax 轮询。轮询是在特定的的时间间隔（如每 1 秒），由浏览器对服务器发出 HTTP 请求，然后由服务器返回最新的数据给客户端的浏览器。这种传统的模式带来很明显的缺点，即浏览器需要不断的向服务器发出请求，然而 HTTP 请求可能包含较长的头部，其中真正有效的数据可能只是很小的一部分，显然这样会浪费很多的带宽等资源。
+
+HTML5 定义的 WebSocket 协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯。
+
+我们将从以下四个方面来介绍 WebSocket API:
+
+1. WebSocket 构造函数；
+2. WebSocket 属性；
+3. WebSocket 方法；
+4. WebSocket 事件；
+
+## WebSocket 构造函数
+
+```js
+const myWebSocket = new WebSocket(url, [, protocals]);
+```
+
+## WebSocket 属性
+
+- url: 只读属性，返回值为当构造函数创建 WebSocket 实例对象时 URL 的绝对路径
+- readyState: 只读属性，用来表示连接状态 （0：未连接；1：连接已建立；2：连接正在关闭；3：连接已关闭或打不开连接）
+- bufferedAmount: 只读属性，未发送至服务器的字节数
+- binaryType: 使用二进制的数据类型连接
+- extensions: 只读属性，服务器选择的扩展
+- protocol: 只读属性，用于返回服务器端选中的子协议的名字
+- onopen: 用于指定连接成功后的回调函数
+- onmessage: 用于指定当从服务器接受到信息时的回调函数
+- onclose: 用于指定连接关闭后的回调函数
+- onerror: 用于指定连接失败后的回调函数
+
+## WebSocket 方法
+
+- send(): 向服务器发送数据
+- close(): 关闭连接
+
+## WebSocket 事件
+
+- onopen: 连接建立时触发
+- onmessage: 客户端接受服务端数据时触发
+- onerror: 通信错误时触发
+- onclose: 连接关闭时触发
+
+![img](https://pics7.baidu.com/feed/738b4710b912c8fcf74a9e8ff5f4bd4fd7882133.jpeg?token=4a81e7dbcb4cc830a4b7adeb54cb8012)
+
+# JavaScript function 的 length 属性
+
+函数的 length 得到的是形参个数（）
+
+例如
+
+```js
+function test(a, b, c) {}
+test.length; // 3
+
+function test(a, b, c, d) {}
+test.length; // 4
+
+// 带默认值的形参不包括在内
+function test(a, b, c, d = 1, e = 2) {}
+test
+  .length(
+    // 3
+
+    // 如果设置了默认值的参数不是尾参数，那么`length`属性也不再计入后面的参数了
+    function (...args) {}
+  )
+  .length(
+    // 0
+    function (a = 0, b, c) {}
+  )
+  .length(
+    // 0
+    function (a, b = 1, c) {}
+  ).length; // 1
+```
+
+# Javascript snipet
+
+```js
+/**
+ * 取消查询
+ */
+function closeSearch() {
+  var xmlhttp;
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.abort();
+}
+
+/**
+ * 停止页面加载
+ */
+function myStop() {
+  if (!!(window.attachEvent && !window.opera)) {
+    document.execCommand("stop");
+  } else {
+    window.stop();
+  }
+}
+
+/**
+ * 指定长度的随机字符串
+ * @param length 指定的长度
+ * @returns {string}
+ */
+function randomString(length) {
+  var str = "";
+  for (; str.length < length; str += Math.random().toString(36).substr(2));
+  return str.substr(0, length);
+}
+
+/**
+ * 对象数组按照对象的keyword分类
+ */
+const groupBy = (array) => array.reduce((preEle, curEle) => {
+    if (!preEle[curEle.keyword]) preEle[curEle.keyword] = [];
+    preEle[curEle.keyword].push(curEle);
+    return preEle;
+}, {});
+```
+
+
+
+# TS 多态的 this 类型
+
+```ts
+class BasicCalculator {
+  public constructor(protected value: number = 0) {}
+
+  public currentValue(): number {
+    return this.value;
+  }
+
+  public add(operand: number): this {
+    this.value += operand;
+    return this;
+  }
+
+  public multiply(operand: number): this {
+    this.value *= operand;
+    return this;
+  }
+}
+
+let v = new BasicCalculator(2).multiply(3).add(2).currentValue();
+console.log("v: ", v);
+
+class ScientificCalculator extends BasicCalculator {
+  public constructor(value = 0) {
+    super(value);
+  }
+
+  public sin(): this {
+    this.value = Math.sin(this.value);
+    return this;
+  }
+}
+
+let sc = new ScientificCalculator(45).multiply(5).sin().add(1).currentValue();
+console.log("sc: ", sc);
+```
+
+# 如何设置跨域隔离启用 SharedArrayBuffer
+
+最近在研究 ffmpeg WebAssembly 版本在网页运行的工具，发现使用到了 SharedArrayBuffer，涉及到跨域隔离的问题，需要设置两个 HTTP 消息头启用跨域隔离：
+
+- Cross-Origin-Opener-Policy 设置为 same-origin（保护源站免受攻击）
+- Cross-Origin-Embedder-Policy 设置为 require-corp（保护源站免受侵害）
+
+不同的服务有不同的设置方法，这里简要介绍下。
+
+## 解决
+
+### 方案一
+
+对于**前端开发**来说，本地开发阶段，可以起一个 Node.js 服务，用于本地开发实时调试，比如我用 Express.js (Node.js 后端框架)
+
+```js
+// Add headers
+app.use(function (req, res, next) {
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  // Pass to next layer of middleware
+  next();
+});
+```
+
+vue 开发，配置 vue.config.js
+
+```
+devServer: {
+    open: false,
+    /* 设置为0.0.0.0则所有的地址均能访问 */
+    host: "0.0.0.0",
+    port: 8080,
+    https: false,
+    hotOnly: false,
+    // http 代理配置
+    proxy: {
+      "/api": {
+        target: url,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": ""
+        }
+      }
+    },
+    before: (app) => { },
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Cross-Origin-Embedder-Policy": "require-corp",
+    },
+}
+```
+
+### 方案二
+
+部署到服务器上之后，一般会用 [nginx](https://so.csdn.net/so/search?q=nginx&spm=1001.2101.3001.7020) 做代理服务器，这时候可以给 nginx 配置加两个响应头
+
+nginx 配置
+
+```
+location / {
+	# 设置响应头
+	add_header 'Cross-Origin-Embedder-Policy' 'require-corp';
+    add_header 'Cross-Origin-Opener-Policy' 'same-origin';
+}
+```
+
+# Nginx
+
+Nginx 是 lgor Sysoev 为俄罗斯访问量第二的 rambler.ru 站点设计开发的。从 2004 年发布至今，凭借开源的力量，已经接近成熟与完善。
+
+Nginx 功能丰富，可作为 HTTP 服务器，也可作为反向代理服务器，邮件服务器。支持 FastCGI、SSL、Virtual Host、URL Rewrite、Gzip 等功能。并且支持很多第三方的模块扩展。
+
+Nginx 的稳定性、功能集、示例配置文件和低系统资源的消耗让他后来居上
+
+## nginx for Windows
+
+启动 nginx 的两种方式
+
+- 直接双击 nginx.exe, 双击后一个黑色的弹窗一闪而过
+- 打开 cmd，切换到 nginx 解压目录下，输入命令 nginx.exe 或者 start nginx
+
+检查 80 端口是否被占用的命令是： netstat -ano | findstr 0.0.0.0:80 或 netstat -ano | findstr "80"
+
+```
+// 查看nginx进程
+tasklist /fi "imagename eq nginx.exe" // 注意，使用双引号
+
+Image Name           PID Session Name     Session#    Mem Usage
+=============== ======== ============== ========== ============
+nginx.exe            652 Console                 0      2 780 K
+nginx.exe           1332 Console                 0      3 112 K
+
+```
+
+| command         | ps                                                                                                                         |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| start nginx     | run nginx                                                                                                                  |
+| nginx -s stop   | fast shutdown                                                                                                              |
+| nginx -s quit   | graceful shutdown                                                                                                          |
+| nginx -s reload | changing configuration, starting new worker processes with a new configuration, gracefull shutdown of old worker processes |
+| nginx -s reopen | re-opening log files                                                                                                       |
+
+关闭 nginx 的两种方式
+
+- 输入 nginx 命令 nginx -s stop(快速停止 nginx) 或 nginx -s quit(完整有序的停止 nginx)
+- 使用 taskkill /f /t /im nginx.exe
+
+# http 服务器: a simple static HTTP server
+
+```bash
+// 安装服务器
+npm i http-server -g
+
+// 在任意目录的终端启动服务
+http-server [path] [options]
+
+Available Options: 看下表
+
+```
+
+| Command                  | Description                                                                                                                                                                                                                                      | Defaults   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| `-p` or `--port`         | Port to use. Use `-p 0` to look for an open port, starting at 8080. It will also read from `process.env.PORT`.                                                                                                                                   | 8080       |
+| `-a`                     | Address to use                                                                                                                                                                                                                                   | 0.0.0.0    |
+| `-d`                     | Show directory listings                                                                                                                                                                                                                          | `true`     |
+| `-i`                     | Display autoIndex                                                                                                                                                                                                                                | `true`     |
+| `-g` or `--gzip`         | When enabled it will serve `./public/some-file.js.gz` in place of `./public/some-file.js` when a gzipped version of the file exists and the request accepts gzip encoding. If brotli is also enabled, it will try to serve brotli first.         | `false`    |
+| `-b` or `--brotli`       | When enabled it will serve `./public/some-file.js.br` in place of `./public/some-file.js` when a brotli compressed version of the file exists and the request accepts `br` encoding. If gzip is also enabled, it will try to serve brotli first. | `false`    |
+| `-e` or `--ext`          | Default file extension if none supplied                                                                                                                                                                                                          | `html`     |
+| `-s` or `--silent`       | Suppress log messages from output                                                                                                                                                                                                                |            |
+| `--cors`                 | Enable CORS via the `Access-Control-Allow-Origin` header                                                                                                                                                                                         |            |
+| `-o [path]`              | Open browser window after starting the server. Optionally provide a URL path to open. e.g.: -o /other/dir/                                                                                                                                       |            |
+| `-c`                     | Set cache time (in seconds) for cache-control max-age header, e.g. `-c10` for 10 seconds. To disable caching, use `-c-1`.                                                                                                                        | `3600`     |
+| `-U` or `--utc`          | Use UTC time format in log messages.                                                                                                                                                                                                             |            |
+| `--log-ip`               | Enable logging of the client's IP address                                                                                                                                                                                                        | `false`    |
+| `-P` or `--proxy`        | Proxies all requests which can't be resolved locally to the given url. e.g.: -P [http://someurl.com](http://someurl.com/)                                                                                                                        |            |
+| `--proxy-options`        | Pass proxy [options](https://github.com/http-party/node-http-proxy#options) using nested dotted objects. e.g.: --proxy-options.secure false                                                                                                      |            |
+| `--username`             | Username for basic authentication                                                                                                                                                                                                                |            |
+| `--password`             | Password for basic authentication                                                                                                                                                                                                                |            |
+| `-S`, `--tls` or `--ssl` | Enable secure request serving with TLS/SSL (HTTPS)                                                                                                                                                                                               | `false`    |
+| `-C` or `--cert`         | Path to ssl cert file                                                                                                                                                                                                                            | `cert.pem` |
+| `-K` or `--key`          | Path to ssl key file                                                                                                                                                                                                                             | `key.pem`  |
+| `-r` or `--robots`       | Automatically provide a /robots.txt (The content of which defaults to `User-agent: *\nDisallow: /`)                                                                                                                                              | `false`    |
+| `--no-dotfiles`          | Do not show dotfiles                                                                                                                                                                                                                             |            |
+| `--mimetypes`            | Path to a .types file for custom mimetype definition                                                                                                                                                                                             |            |
+| `-h` or `--help`         | Print this list and exit.                                                                                                                                                                                                                        |            |
+| `-v` or `--version`      | Print the version and exit.                                                                                                                                                                                                                      |            |
+
+# NVM Windows
+
+[nvm-windows](https://github.com/coreybutler/nvm-windows/releases) 管理不同版本的 node 与 npm 的工具
+
+## 安装多版本 node/npm
+
+例如，我们要安装 12.22.2 版本，可以用如下命令：
+
+```
+nvm install 12.22.2
+```
+
+nvm 遵守语义化版本命名规则。例如，你想安装最新的 **12.22**系列的最新的一个版本，可以运行
+
+```
+nvm install 12.22
+```
+
+## 列出已安装实例
+
+```
+nvm ls / nvm list
+```
+
+## 在不同版本间切换
+
+nvm use 加版本号，例如想使用 node 16.17.0
+
+```
+nvm use 16.17.0
+```
+
+# java 后台启动 jar 包的一些命令
+
+## 启动方式一
+
+在 jar 包所在文件夹打开命令窗口，输入以下命令
+
+**java -jar app.jar**
+特点：当前 ssh 窗口被锁定，可按 CTRL + C 打断程序运行，或直接关闭窗口，程序退出
+
+## 启动方式二
+
+**java -jar app.jar &**
+&代表在后台运行。
+特定：当前 ssh 窗口不被锁定，但是当窗口关闭时，程序中止运行。
+
+## 启动方式三： nohup 命令
+
+linux 系统启动命令:
+**nohup java -jar xxx.jar &**
+
+nohup 意思是不挂断运行命令,当账户退出或终端关闭时,程序仍然运行
+
+## 启动方式四
+
+windows 下通过脚本启动 jar 包
+
+启动 jar
+
+创建一个以 bat 后缀结束的文件，写入一下代码
+
+```vbscript
+@echo off
+start javaw -jar xxx.jar
+exit
+```
+
+启动脚本
+
+# JS 的 get 方法和 set 方法
+
+- **get 关键字将对象属性与函数进行绑定，当属性被访问时，对应函数被执行。**
+- **set 关键字将对象属性与函数进行绑定，当属性被赋值时，对应函数被执行。**
+
+```js
+let user = {
+  info: {
+    name: "zhangsan",
+  },
+  get name() {
+    return this.info.name;
+  },
+  set name(val) {
+    console.log("I change name");
+    this.info.name = val;
+  },
+};
+
+user.name; // return 'zhangsan'
+user.name = "lisi"; // call set name(val)
+```
+
+再来一例
+
+```js
+const Config = {
+  get basePath() {
+    let path = win.location.origin;
+    let pathname = win.location.pathname;
+    let demoIdx = pathname.lastIndexOf("/demo/");
+    return path + pathname.substr(0, demoIdx);
+  },
+  get buildPath() {
+    return this.basePath + "/dist/";
+  },
+  get libPath() {
+    return this.buildPath + "lib/";
+  },
+  get src() {
+    return this.basePath + "/data/video3/playlist.m3u8";
+  },
+};
+let el = doc.querySelector(".play-container");
+let player = new GoldPlay(el, {
+  sourceURL: Config.src,
+  type: "HLS",
+  libPath: Config.libPath,
+  playBackRate: 1,
+});
+```
+
+# splitpanes
+
+[splitpanes](https://antoniandre.github.io/splitpanes/)
+
+https://github.com/antoniandre/splitpanes
+
+A Vue.js reliable, simple and touch-ready panes splitter / resizer.
+
+## Features
+
+- Light weight & no dependencies other than Vue JS
+- Only worry about your panes, the splitters are automatic
+- Nesting supported
+- Fully responsive
+- Support for touch devices
+- Push other panes or not
+- Double click a splitter to maximize pane
+- Programmatically set pane width or height
+- Programmatically add and remove panes
+- **Supports Vue 2 & Vue 3**
+
+>  [Vue 3 is the new default](https://blog.vuejs.org/posts/vue-3-as-the-new-default.html)**, and so is Splitpanes 3, for Vue 3.** 🙌
+> **For Vue 2 projects, you should use** `npm i splitpanes@legacy`**.**
+
 
 
 ### accumulate over a long period
