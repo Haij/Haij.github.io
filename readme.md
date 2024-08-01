@@ -8,6 +8,44 @@
 - [pinia](https://pinia.web3doc.top/)
 - [nprogress](https://www.npmjs.com/package/nprogress)
 
+#防抖与节流实现
+```js
+// 防抖
+function debounce = (callback, interval = 300) => {
+	let timer = null
+	return function() {
+		clearTimeout(timer)
+		timer = setTimeout(() => {
+			callback.apply(this)
+		}, interval)
+	}
+}
+
+// 使用
+_input.addEventListener('input', debounce(() => {
+	ajax(this.value)
+}, 500))
+
+
+// 节流
+function throttle = (callback, interval = 300) => {
+	let flag = false
+	return function () {
+		if(flag) return
+		flag = true
+		setTimeout(() => {
+			callback.apply(this)
+			flag = false
+		}, interval)
+	}
+}
+
+// 使用
+window.addEventListener('scroll', throttle(() => {
+	// 判断滚动距离
+}, 500))
+```
+
 # 单位转换
 ```js
 function formatSizeUnits(kb) {
