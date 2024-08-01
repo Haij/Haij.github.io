@@ -47,6 +47,10 @@ function concurRequest(urls, maxNum) {
 		}
 	})
 }
+
+concurRequest([url,url,url,...], 3).then(resps => {
+	console.log(resps)
+})
 ```
 
 # 较大数据请求，使用分片的方式
