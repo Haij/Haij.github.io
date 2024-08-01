@@ -8,6 +8,47 @@
 - [pinia](https://pinia.web3doc.top/)
 - [nprogress](https://www.npmjs.com/package/nprogress)
 
+# 并发请求
+```js
+function concurRequest(urls, maxNum) {
+	return new Promise(resolve => {
+		if(urls.length == 0) {
+			resolve([])
+			return
+		}
+
+		const results = []
+		let index = 0 //下一个请求的下标
+		let count = 0 //当前请求完成的数量
+
+		// 发送请求
+		async function request() {
+			const i = index
+			const url = urls[index]
+			index++
+			try{
+				const resp = await fetch(url)
+				results[i] = resp
+			} catch(err) {
+				results[i] = err
+			} finally {
+				count++
+				if(count === urls.length){
+					console.log('over')
+					resolve(results)
+				}
+				request()
+			}
+		}
+
+		const times = Math.min(urls.length, maxNum)
+		for(let i = 0; i < times; i++) {
+			request()
+		}
+	})
+}
+```
+
 # 较大数据请求，使用分片的方式
 ```js
 async function loadNovel() {
