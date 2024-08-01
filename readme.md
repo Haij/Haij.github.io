@@ -8,7 +8,21 @@
 - [pinia](https://pinia.web3doc.top/)
 - [nprogress](https://www.npmjs.com/package/nprogress)
 
-#防抖与节流实现
+# 较大数据请求，使用分片的方式
+```js
+async function loadNovel() {
+	const url = 'https://www.......'
+	const resp = await fetch(url)
+	const reader = resp.body.getReader()
+	const {value, done} = await reader.read()
+	const decoder = new TextDecoder()
+	const d = decoder.decode(value)
+	console.log(d)
+}
+```
+
+
+# 防抖与节流实现
 ```js
 // 防抖
 function debounce = (callback, interval = 300) => {
