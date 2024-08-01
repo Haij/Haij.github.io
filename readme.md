@@ -9,7 +9,8 @@
 - [nprogress](https://www.npmjs.com/package/nprogress)
 
 # 跨域
-![image](https://github.com/user-attachments/assets/653ca0b0-0e29-416c-abc0-a6164176aec1)
+![image](https://github.com/user-attachments/assets/ec224c6e-639b-40d8-a37f-c9154df41d1b)
+
 
 # 并发请求
 ```js
