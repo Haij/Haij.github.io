@@ -8,6 +8,9 @@
 - [pinia](https://pinia.web3doc.top/)
 - [nprogress](https://www.npmjs.com/package/nprogress)
 
+# 跨域
+![image](https://github.com/user-attachments/assets/653ca0b0-0e29-416c-abc0-a6164176aec1)
+
 # 并发请求
 ```js
 function concurRequest(urls, maxNum) {
