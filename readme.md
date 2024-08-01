@@ -59,10 +59,15 @@ async function loadNovel() {
 	const url = 'https://www.......'
 	const resp = await fetch(url)
 	const reader = resp.body.getReader()
-	const {value, done} = await reader.read()
 	const decoder = new TextDecoder()
-	const d = decoder.decode(value)
-	console.log(d)
+	for(;;){
+		const {value, done} = await reader.read()
+		if(done){
+  			break
+		}
+		const d = decoder.decode(value)
+		console.log(d)
+	}
 }
 ```
 
