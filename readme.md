@@ -8,6 +8,7 @@
 - [pinia](https://pinia.web3doc.top/)
 - [nprogress](https://www.npmjs.com/package/nprogress)
 - [another](./part-1.md)
+- [ES](./mds/es.md)
 
 # 多个ElMessageBox弹框，一次关闭
 直接调用ElMessageBox.close()；会关闭当前打开的所有消息弹出框
