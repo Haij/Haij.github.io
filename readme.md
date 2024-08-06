@@ -10,6 +10,14 @@
 - [vue指令](./part-1.md)
 - [ES](./mds/ES.md)
 
+# css3 grid grid-template-columns
+```css
+.employee-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+```
+
 # 多个ElMessageBox弹框，一次关闭
 直接调用ElMessageBox.close()；会关闭当前打开的所有消息弹出框
 
