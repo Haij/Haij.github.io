@@ -704,3 +704,41 @@ Promise.any([promise1(), promise2(), promise3()])
   });
 ```
 
+### reduce
+#### 求和
+```js
+const scores = [1,2,3,4,5]
+const result = scores.reduce((acc, cur) => acc + cur, 0)
+console.log(result) //15
+```
+#### 代替some和every
+```js
+const scores = [
+    { score: 45, subject: "chinese" },
+    { score: 90, subject: "math" },
+    { score: 60, subject: "english" }
+]
+// 代替some: 至少一门合格
+const isAtLeastOneQualified = scores.reduce((acc,cur) => acc || cur.score >= 60, false); // true
+// 代替every: 全部合格
+const isAllQualified = scores.reduce((acc,cur) => acc && cur.score >= 60, true) //false
+```
+#### 数组去重
+```js
+const getUnique = (arr) => {
+    return arr.reduce((acc, cur) => acc.includes(cur) ? acc : [...acc, cur], [])
+}
+```
+#### 数字千分化
+```js
+function ThousandNum(num = 0) {
+    const str = (+num).toString().split('.')
+    const int = nums => nums.split('').reverse().reduceRight((t,v,i) => t + (i%3 ? v : `${v},`), '').replace(/^,|,$/g, '')
+    const dec = nums => nums.split('').reduce((t,v,i) => t + ((i+1)%3 ? v : `${v},`), '').replace(/^,|,$/g, '')
+    return str.length > 1 ? `${int(str[0])}.${dec(str[1])}` : int(str[0])
+}
+ThousandNum(1234) // '1,234'
+ThousandNum(1234.00) // '1,234'
+ThousandNum(0.1234) // '0.123,4'
+ThousandNum(1234.5678 // '1,234.456,8
+```
