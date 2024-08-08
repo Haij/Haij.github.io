@@ -31,22 +31,17 @@
     background: #FAFAFB;
     border-radius: 12px;
 
-    // &:nth-child(7) {
-    //   grid-column-start: 2;
-    //   grid-column-end: 5;
-    // }
-
-    // &:nth-child(10) {
-    //   grid-column-start: 2;
-    //   grid-column-end: 6;
-    // }
-    // 使用下面的简写
     &:nth-child(7) {
-      grid-column: 2/5;
+      // grid-column-start: 2;
+      // grid-column-end: 5;
+      // 使用简写
+      grid-column: 2 / 5;
     }
 
     &:nth-child(10) {
-      grid-column: 2/6;
+      // grid-column-start: 2;
+      // grid-column-end: 6;
+      grid-column: 2 / 6;
     }
   }
 }
