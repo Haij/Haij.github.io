@@ -9,6 +9,7 @@
 - [nprogress](https://www.npmjs.com/package/nprogress)
 - [vue指令](./part-1.md)
 - [ES](./mds/ES.md)
+- [Layout](./mds/layout.md)
 
 # css3 grid grid-template-columns
 ```css
