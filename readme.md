@@ -7,7 +7,7 @@
 - [ts](https://tslang.cn)
 - [pinia](https://pinia.web3doc.top/)
 - [nprogress](https://www.npmjs.com/package/nprogress)
-- [vue指令](./part-1.md)
+- [vue指令](./mds/part-1.md)
 - [ES](./mds/ES.md)
 - [Layout](./mds/layout.md)
 
