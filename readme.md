@@ -19,6 +19,48 @@
 }
 ```
 
+# vue3 v-model
+父组件
+```html
+<template>
+  <div class="!bg-white flex flex-col items-center justify-center">
+    <p>尊敬的用户，您尚未购买此定制化功能，如需使用，请先进行购买</p>
+    <p class="text-blue-600">欢迎致电: 13305146308</p>
+    <MM v-model="isShow" name="lisa" class="tty" />
+  </div>
+</template>
+
+<script setup>
+import MM from './mm.vue';
+
+const isShow = ref(true)
+</script>
+
+<style scoped lang="scss">
+.tty {
+  background: red;
+}
+</style>
+```
+子组件
+```html
+<template>
+  <div>
+    {{ modelValue }} and name is {{ name }}
+    <button @click="close">close</button>
+  </div>
+</template>
+
+<script setup>
+const props = defineProps(['modelValue', 'name'])
+const emit = defineEmits(['update:modelValue'])
+
+const close = () => {
+  emit('update:modelValue', !props.modelValue)
+}
+</script>
+```
+
 # vue2 Vs vue3响应式的区别
 - Vue2响应式：基于Object.defineProperty()实现的。
 - Vue3响应式：基于Proxy实现的。
