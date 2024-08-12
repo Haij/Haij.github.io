@@ -19,6 +19,10 @@
 }
 ```
 
+# vue2 Vs vue3响应式的区别
+- Vue2响应式：基于Object.defineProperty()实现的。
+- Vue3响应式：基于Proxy实现的。
+
 # 多个ElMessageBox弹框，一次关闭
 直接调用ElMessageBox.close()；会关闭当前打开的所有消息弹出框
 
