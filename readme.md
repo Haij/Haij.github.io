@@ -11,6 +11,11 @@
 - [ES](./mds/ES.md)
 - [Layout](./mds/layout.md)
 
+
+# css3 nth-chind
+![image](https://github.com/user-attachments/assets/9b781642-feb3-4287-bd5f-25e67bae4f34)
+
+
 # css3 grid grid-template-columns
 ```css
 .employee-list {
