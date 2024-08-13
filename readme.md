@@ -74,6 +74,54 @@ const close = () => {
 }
 </script>
 ```
+![image](https://github.com/user-attachments/assets/731dce21-40cc-4bb4-beb8-f6503734c6cc)
+useVModel.js
+```js
+import { computed } from 'vue'
+
+const cacheMap = new WeakMap()
+
+export function useVModel(props, propName, emit) {
+  return computed({
+    get() {
+      if (cacheMap.has(props[propName])) {
+        return cacheMap.get(props[propName])
+      }
+      const proxy = new Proxy(props[propName], {
+        get(target, key) {
+          return Reflect.get(target, key)
+        },
+        set(target, key, value) {
+          target[key] = value
+          emit(`update:${propName}`, {
+            ...target,
+            [key]: value
+          })
+          return true
+        }
+      })
+      cacheMap.set(props[propName], proxy)
+      return proxy
+    },
+    set(value) {
+      emit(`update:${propName}`, value)
+    }
+  })
+}
+```
+// use
+<el-input v-model="model.keyword" />
+```js
+import { useVModel } from './useVModel'
+const props = defineProps({
+  modelValue: {
+    type: Object,
+    default: () => ({})
+  }
+})
+const emits = defineEmits(['update:modelValue'])
+const model = useVModel(props, 'modelValue', emits)
+```
 
 # vue2 Vs vue3响应式的区别
 - Vue2响应式：基于Object.defineProperty()实现的。
