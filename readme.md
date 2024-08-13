@@ -11,7 +11,16 @@
 - [ES](./mds/ES.md)
 - [Layout](./mds/layout.md)
 
-
+# css3 多行省略(数字8，是8行后省略）
+```css
+.multi-lines{
+display: -webkit-box;
+-webkit-box-orient: vertical;
+overflow: hidden;
+-webkit-line-clamp: 8;
+max-height: 170px;
+}
+```
 # css3 nth-chind
 ![image](https://github.com/user-attachments/assets/9b781642-feb3-4287-bd5f-25e67bae4f34)
 
