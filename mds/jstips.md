@@ -16,3 +16,6 @@ function randomUuid(len = 6) {
 ```javascript
 oninput="value=value.replace(/^\d/g, '')"
 ```
+
+![image](https://github.com/user-attachments/assets/c93b2eac-396b-422d-bab7-5d0fa71c0073)
+
