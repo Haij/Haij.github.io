@@ -1,3 +1,4 @@
+```javascript
 function randomColor() {
 	const color = Math.random().toString(16).slice(2, 8).padEnd(6, '0')
 	return '#'+color
@@ -10,3 +11,4 @@ function randomUuid(len = 6) {
 		return randomUuid(11) + randomUuid(len - 11)
 	}
 }
+```
