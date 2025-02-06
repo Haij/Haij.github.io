@@ -10,6 +10,7 @@
 - [vue指令](./mds/part-1.md)
 - [ES](./mds/ES.md)
 - [Layout](./mds/layout.md)
+- [JStips](./mds/jstips.md)
 
 # css3 多行省略(数字8，是8行后省略）
 ```css
