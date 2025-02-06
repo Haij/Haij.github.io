@@ -12,3 +12,7 @@ function randomUuid(len = 6) {
 	}
 }
 ```
+
+```javascript
+oninput="value=value.replace(/^\d/g, '')"
+```
