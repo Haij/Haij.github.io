@@ -19,3 +19,15 @@ oninput="value=value.replace(/^\d/g, '')"
 
 ![image](https://github.com/user-attachments/assets/c93b2eac-396b-422d-bab7-5d0fa71c0073)
 
+```javascript
+copy(data) {
+	let _input = document.createElement("input"); // 直接构建input
+	data = data.replace(/<\/?.+?\/?>/g, "");
+	_input.value = data; // 设置内容
+	document.body.appendChild(_input); //添加临时实例
+	_input.select(); // 选择实例内容
+	document.execCommand("copy"); // 执行复制
+	this.$message.success("复制成功");
+	document.body.removeChild(_input); // 删除临时实例
+}
+```
