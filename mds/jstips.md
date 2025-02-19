@@ -31,3 +31,44 @@ copy(data) {
 	document.body.removeChild(_input); // 删除临时实例
 }
 ```
+jsx
+```javascript
+{
+  prop: "operation",
+  label: "操作",
+  minWidth: "150",
+  align: "center",
+  hideSelect: true,
+  fixed: "right",
+  render: (h, row) => { //gw-table render
+    let renderRead = (
+      <a
+	class="operationMenuitem"
+	onClick={() => _this.handleEdit(row)}
+      >
+	<span>编辑</span>
+      </a>
+    );
+    let renderRemove = (
+      <a-popconfirm
+	class="operationMenuitem"
+	title="确定删除吗?"
+	onConfirm={() => _this.handleDelete(row)}
+      >
+	<a class="operationMenuitem">
+	  <span>删除</span>
+	</a>
+      </a-popconfirm>
+    );
+
+    return (
+      <section
+	onClick={e => e.stopPropagation()} // 阻止冒泡
+	style="text-align:center"
+      >
+	{renderRead} {renderRemove}
+      </section>
+    );
+  }
+}
+```
