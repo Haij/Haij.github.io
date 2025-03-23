@@ -11,7 +11,7 @@
 - [ES](./mds/ES.md)
 - [Layout](./mds/layout.md)
 - [JStips](./mds/jstips.md)
-- [grid-table](./mds/grid-table.md)
+- [grid-table](./mds/gridTable.md)
 
 # css3 多行省略(数字8，是8行后省略）
 ```css
