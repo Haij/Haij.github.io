@@ -15,6 +15,10 @@
 - [cmd](./mds/cmd.md)
 - [python study](./mds/py.md)
 
+# python 计算水仙花数
+![PixPin_2025-05-30_16-08-26](https://github.com/user-attachments/assets/911b73d4-3878-4fc1-8ed5-18b54c370039)
+
+
 # css3 多行省略(数字8，是8行后省略）
 ```css
 .multi-lines{
