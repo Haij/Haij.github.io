@@ -13,6 +13,7 @@
 - [JStips](./mds/jstips.md)
 - [grid-table](./mds/gridTable.md)
 - [cmd](./mds/cmd.md)
+- [python study](./mds/py.md)
 
 # css3 多行省略(数字8，是8行后省略）
 ```css
