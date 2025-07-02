@@ -2221,4 +2221,8 @@ ps aux|grep nginx 查看nginx进程
 ### MISC
 
 1. 在文件夹的地址栏输入cmd，就可以打开一个本文件下的cmd命令窗口；
-
+2. [Lorem Picsum](https://picsum.photos/)
+3. [tailwindcss](https://tailwindcss.com/)
+4. [lucide](https://lucide.dev/)
+5. [annas-archive](https://annas-archive.org/)
+6. [nga-artworks](https://www.nga.gov/artworks)
