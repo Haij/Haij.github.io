@@ -722,7 +722,49 @@ const 岗位要求 = new Set(["JS", "TypeScript", "Python"]);
 
 <img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/42c6341d-1e2e-4e13-b9b6-ff20bbe360d3" />
 
+### Temporal API：以后时间处理就用这个了
+以后不再需要 Moment.js、Day.js 了：
 
+// 获取特定时区的当前时间
+const now = Temporal.Now.zonedDateTimeISO("America/New_York");
+console.log(now.toLocaleString());
+最经典的血案莫过于计算 1 月 31 日再加一个月了：
+
+const date = new Date(2026, 0, 31);
+date.setMonth(date.getMonth() + 1);
+console.log(date.toDateString()); // "Sun Mar 03 2026" ❌ 跳到 3 月了
+用 Temporal 就正确了：
+
+const jan31 = Temporal.PlainDate.from("2026-01-31");
+const feb = jan31.add({ months: 1 });
+console.log(feb.toString()); // "2026-02-28" ✅
+
+<img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/d3d93535-0fa4-4889-96a8-ee601f3ef8c1" />
+
+### Explicit Resource Management：不用手动写 cleanup 了
+Node.js 里的文件句柄、数据库连接，用完还要手动关，这一直是个老大难问题。
+
+ES2026 引入了 using 关键字，作用域结束自动调用清理逻辑：
+
+async function saveData() {
+  await using file = new FileHandle("output.txt");
+  await file.write("hello world");
+  // file 自动 flush + close，就算中间抛出异常也会执行
+}
+多个资源要用 DisposableStack:
+
+async function runJob() {
+  await using stack = new AsyncDisposableStack();
+
+  const db = stack.use(await openDatabase());
+  const file = stack.use(new FileHandle("output.txt"));
+  const tmpDir = stack.defer(async () => removeTempDir("/tmp/job"));
+
+  // ... 业务逻辑
+
+  // 退出时自动按逆序清理，三个资源全关掉
+}
+这就是 RAII 模式在 JavaScript 里的落地。
 
 ### reduce
 #### 求和
