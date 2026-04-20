@@ -704,6 +704,22 @@ Promise.any([promise1(), promise2(), promise3()])
   });
 ```
 
+### Set 家族新方法：集合运算
+const 你会的 = new Set(["JS", "Python", "CSS", "SQL"]);
+const 岗位要求 = new Set(["JS", "TypeScript", "Python"]);
+
+// 共同技能
+你会的.intersection(岗位要求); // Set {"JS", "Python"}
+
+// 技能差距
+岗位要求.difference(你会); // Set {"TypeScript"}
+
+// 你会但岗位不需要的
+你会的.difference(岗位要求); // Set {"CSS", "SQL"}
+
+// 两者并集
+你会的.union(岗位要求); // Set {"JS", "Python", "CSS", "SQL", "TypeScript"}
+
 ### reduce
 #### 求和
 ```js
