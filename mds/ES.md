@@ -720,7 +720,8 @@ const 岗位要求 = new Set(["JS", "TypeScript", "Python"]);
 // 两者并集
 你会的.union(岗位要求); // Set {"JS", "Python", "CSS", "SQL", "TypeScript"}
 
-![Uploading image.png…]()
+<img width="1376" height="768" alt="image" src="https://github.com/user-attachments/assets/42c6341d-1e2e-4e13-b9b6-ff20bbe360d3" />
+
 
 
 ### reduce
